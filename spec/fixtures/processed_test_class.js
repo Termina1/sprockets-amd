@@ -56,4 +56,5 @@ ResumeLandingWindow = (function(_super) {
   return ResumeLandingWindow;
 
 })(BaseController);
-});
+
+return ResumeLandingWindow;});

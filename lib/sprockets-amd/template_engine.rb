@@ -6,7 +6,7 @@ class AMDTemplateEngine
   end
 
   def extract_module_name
-    with_prefix(@code.match(/AMD\.module\.([\w_\.-]+)/)[1]).first
+    @moodule_name ||= with_prefix(@code.match(/AMD\.module\.([\w_\.-]+)/)[1]).first
   end
 
   def extract_dependencies
@@ -33,9 +33,17 @@ class AMDTemplateEngine
     %w(App)
   end
 
+  def module_name_without_prefix
+    without_prefix [extract_module_name]
+  end  
+
   def dependencies_without_prefix
+    without_prefix extract_dependencies
+  end
+
+  def without_prefix(thing)
     prefixes = get_registered_prefixes
-    extract_dependencies.map do |el|
+    thing.map do |el|
       prefixes.each { |pr| el = el.gsub("#{pr}.", '') }
       el
     end
@@ -45,6 +53,7 @@ class AMDTemplateEngine
     (["AMD.require", "AMD.module"] + get_registered_prefixes).each do |pref|
       @code = @code.gsub "#{pref}.", ''
     end
+    @code += "\nreturn #{module_name_without_prefix[0]};"
     @code
   end
 
