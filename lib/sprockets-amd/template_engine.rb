@@ -1,4 +1,3 @@
-require 'pry'
 class AMDTemplateEngine
 
   def initialize(code)
