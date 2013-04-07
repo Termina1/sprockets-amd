@@ -42,6 +42,7 @@ ResumeLandingWindow = (function(_super) {
   };
 
   ResumeLandingWindow.prototype.events = function() {
+    var thing = new machina.Fsm;
     return this.el.find('.social-login a').click(this.auth);
   };
 

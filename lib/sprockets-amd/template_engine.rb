@@ -10,7 +10,7 @@ class AMDTemplateEngine
   end
 
   def extract_dependencies
-    @deps ||= with_prefix @code.scan(/AMD\.require\.([\w_\.-]+)/).flatten
+    @deps ||= with_prefix @code.scan(/AMD\.require\.([\w_\.-]+)/).flatten.uniq
   end
 
   def get_quote_dependencies
