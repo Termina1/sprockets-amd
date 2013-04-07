@@ -11,7 +11,7 @@ describe AMDTemplateEngine do
   end
 
   it "extracts all deps" do
-    expect(AMDTemplateEngine.new(file_class).extract_dependencies).to eql(["machina", "App.BaseController"])
+    expect(AMDTemplateEngine.new(file_class).extract_dependencies).to eql ["machina", "App.BaseController"]
   end
 
   it "renders ready code" do
