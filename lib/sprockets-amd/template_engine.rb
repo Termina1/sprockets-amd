@@ -10,12 +10,16 @@ class AMDTemplateEngine
   end
 
   def extract_dependencies
-    with_prefix @code.scan(/AMD\.require\.([\w_\.-]+)/).flatten
+    @deps ||= with_prefix @code.scan(/AMD\.require\.([\w_\.-]+)/).flatten
+  end
+
+  def get_quote_dependencies
+    extract_dependencies.map { |el| "'#{el}'" }
   end
 
   def with_prefix(matches)
     matches = [matches] unless matches.is_a?(Array)
-    map = matches.map do |el| 
+    matches.map do |el| 
       arr = el.split(".") 
       if get_registered_prefixes.include?(arr[0])
         arr.slice(0, 2).join(".")
@@ -23,15 +27,29 @@ class AMDTemplateEngine
         arr.slice(0)
       end
     end
-    map.to_set
   end
 
   def get_registered_prefixes
     %w(App)
   end
 
+  def dependencies_without_prefix
+    prefixes = get_registered_prefixes
+    extract_dependencies.map do |el|
+      prefixes.each { |pr| el = el.gsub("#{pr}.", '') }
+      el
+    end
+  end
+
+  def strip_code
+    (["AMD.require", "AMD.module"] + get_registered_prefixes).each do |pref|
+      @code = @code.gsub "#{pref}.", ''
+    end
+    @code
+  end
+
   def render
-    @data
+    "define('#{extract_module_name}', [#{get_quote_dependencies.join(', ')}], function(#{dependencies_without_prefix.join(", ")}) {\n#{strip_code}});"
   end
 
 end
