@@ -24,7 +24,7 @@ class Test
 should become
 
 ``` coffee-script
-class AMD.require.Test
+class AMD.module.Test
   someAction: ->
 ```
 Second, prefix your dependencies:
