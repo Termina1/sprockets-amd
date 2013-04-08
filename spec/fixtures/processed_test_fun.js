@@ -9,6 +9,7 @@ var WindowHeightAdjustable = {};
       if (bottomPadding == null) {
         bottomPadding = 10;
       }
+      result = 'App.SomeTest';
       top = this.el.offset().top;
       screenHeight = $(window).height();
       this.el.height(screenHeight - top - bottomPadding);

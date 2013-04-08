@@ -48,9 +48,17 @@ class AMDTemplateEngine
     end
   end
 
+  def combined_prefixes
+    syntax = ["AMD.require", "AMD.module"]
+    prefs = get_registered_prefixes.inject([]) do |sum, pref|
+      sum + syntax.map { |el| "#{el}.#{pref}" }
+    end
+    prefs + syntax
+  end
+
   def strip_code
     @code = "var #{module_name_without_prefix[0]} = {};\n#{@code}"
-    (["AMD.require", "AMD.module"] + get_registered_prefixes).each do |pref|
+    combined_prefixes.each do |pref|
       @code = @code.gsub "#{pref}.", ''
     end
     @code += "\nreturn #{module_name_without_prefix[0]};"
