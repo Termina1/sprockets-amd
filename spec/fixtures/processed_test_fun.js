@@ -1,6 +1,8 @@
+define('App.WindowHeightAdjustable', [], function() {
+var WindowHeightAdjustable = {};
 (function() {
 
-  AMD.module.App.WindowHeightAdjustable = {
+  WindowHeightAdjustable = {
     adjustHeight: function(bottomPadding) {
       var screenHeight, top,
         _this = this;
@@ -18,3 +20,4 @@
   };
 
 }).call(this);
+return WindowHeightAdjustable;});

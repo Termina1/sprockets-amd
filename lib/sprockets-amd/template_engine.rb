@@ -49,6 +49,7 @@ class AMDTemplateEngine
   end
 
   def strip_code
+    @code = "var #{module_name_without_prefix[0]} = {};\n#{@code}"
     (["AMD.require", "AMD.module"] + get_registered_prefixes).each do |pref|
       @code = @code.gsub "#{pref}.", ''
     end
