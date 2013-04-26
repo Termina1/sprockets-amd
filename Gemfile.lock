@@ -5,7 +5,7 @@ PATH
       tilt
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.1)
     hike (1.2.1)

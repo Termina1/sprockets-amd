@@ -1,10 +1,10 @@
 class AMDTemplateEngine
 
-  def initialize(code, prefixes = nil, require_statement = nil, module_statement = nil)
-    @prefixes = prefixes
+  def initialize(code, options = {})
+    @prefixes = options[:prefixes]
     @code = code
-    @require_statement = require_statement || "AMD\.require"
-    @module_statement = module_statement || "AMD\.module"
+    @require_statement = options[:require_statement] || "AMD\.require"
+    @module_statement = options[:module_statement] || "AMD\.module"
   end
 
   def extract_module_name

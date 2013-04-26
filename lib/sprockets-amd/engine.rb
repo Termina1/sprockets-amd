@@ -22,7 +22,7 @@ module SprocketsAmd
     def prepare; end
 
     def evaluate(scope, locals, &block)
-      @output ||= AMDTemplateEngine.new(data, self.class.config[:prefixes]).render
+      @output ||= AMDTemplateEngine.new(data, self.class.config).render
     end
 
   end
