@@ -5,8 +5,9 @@ module SprocketsAmd
   class AMDTemplate < Tilt::Template
     class << self; 
       attr_accessor :config 
-      @config = {}
     end
+
+    self.config = {}
 
     self.default_mime_type = 'application/javascript'
 
