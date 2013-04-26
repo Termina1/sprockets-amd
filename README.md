@@ -7,7 +7,15 @@ There are three easy steps to start using it:
 
 ### 1. Configure prefix
 
-TODO
+Sometimes you want to add namespace for your coffee class names:
+
+```ruby
+SprocketsAmd.configure do |config|
+  config[:prefixes] = ["App"]
+end
+```
+
+Now you can use ```AMD.require.App.Testclass``` and ```AMD.module.App.Testclass```
 
 ### 2. Rename your file
 
