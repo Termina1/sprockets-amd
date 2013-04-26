@@ -3,7 +3,13 @@ require 'tilt'
 module SprocketsAmd
 
   class AMDTemplate < Tilt::Template
+    class << self; 
+      attr_accessor :config 
+      @config = {}
+    end
+
     self.default_mime_type = 'application/javascript'
+
 
     def self.engine_initialized?
       defined? ::AMDTemplateEngine
@@ -16,7 +22,7 @@ module SprocketsAmd
     def prepare; end
 
     def evaluate(scope, locals, &block)
-      @output ||= AMDTemplateEngine.new(data).render
+      @output ||= AMDTemplateEngine.new(data, self.class.config[:prefixes]).render
     end
 
   end

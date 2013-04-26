@@ -1,15 +1,20 @@
 class AMDTemplateEngine
 
-  def initialize(code)
+  def initialize(code, prefixes = nil, require_statement = nil, module_statement = nil)
+    @prefixes = prefixes
     @code = code
+    @require_statement = require_statement || "AMD\.require"
+    @module_statement = module_statement || "AMD\.module"
   end
 
   def extract_module_name
-    @moodule_name ||= with_prefix(@code.match(/AMD\.module\.([\w_\.-]+)/)[1]).first
+    regexp = /#{@module_statement}\.([\w_\.-]+)/
+    @moodule_name ||= with_prefix(@code.match(regexp)[1]).first
   end
 
   def extract_dependencies
-    @deps ||= with_prefix @code.scan(/AMD\.require\.([\w_\.-]+)/).flatten.uniq
+    regexp = /#{@require_statement}\.([\w_\.-]+)/
+    @deps ||= with_prefix @code.scan(regexp).flatten.uniq
   end
 
   def get_quote_dependencies
@@ -29,7 +34,7 @@ class AMDTemplateEngine
   end
 
   def get_registered_prefixes
-    %w(App)
+    @prefixes || []
   end
 
   def module_name_without_prefix
@@ -49,7 +54,7 @@ class AMDTemplateEngine
   end
 
   def combined_prefixes
-    syntax = ["AMD.require", "AMD.module"]
+    syntax = [@require_statement, @module_statement]
     prefs = get_registered_prefixes.inject([]) do |sum, pref|
       sum + syntax.map { |el| "#{el}.#{pref}" }
     end
