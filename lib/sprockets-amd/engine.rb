@@ -1,10 +1,11 @@
 require 'tilt'
+require_relative 'template_engine'
 
 module SprocketsAmd
 
   class AMDTemplate < Tilt::Template
-    class << self; 
-      attr_accessor :config 
+    class << self;
+      attr_accessor :config
     end
 
     self.config = {}

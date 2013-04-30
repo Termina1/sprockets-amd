@@ -42,7 +42,7 @@ class Test
   someAction: ->
     new machina.Fsm
 ```
-shoul become
+should become
 ``` coffee-script
 class Test
   someAction: ->
