@@ -3,7 +3,7 @@ module SprocketsAmd
 
     def javascript_require(*manifest)
       manifest = manifest.reduce({}) do |acc, el| 
-        acc[el] = asset_path(el)
+        acc[el] = Rails.application.assets[el].digest_path
         acc
       end
       raw "<script type=\"text/javascript\">
