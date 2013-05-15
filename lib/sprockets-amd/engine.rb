@@ -1,4 +1,4 @@
-require 'sprockets-amd/view_helpers'
+require 'app/helpers/view_helpers'
 
 module SprocketsAmd
   class Engine < Rails::Engine
