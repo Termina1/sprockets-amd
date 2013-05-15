@@ -3,11 +3,7 @@ module SprocketsAmd
 
     def javascript_require(*manifest)
       manifest = manifest.reduce({}) do |acc, el| 
-        if Rails.env == 'production'
-          acc[el] = Rails.application.assets[el].digest_path.gsub(/\.js$/, '')
-        else
-          acc[el] = asset_path(el)
-        end
+        acc[el] = asset_path(el + '.js').gsub /\.js$/, ''
         acc
       end
       raw "<script type=\"text/javascript\">
