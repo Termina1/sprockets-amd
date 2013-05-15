@@ -1,4 +1,4 @@
-require 'app/helpers/view_helpers'
+require File.dirname(__FILE__) + '/../../app/helpers/view_helpers'
 
 module SprocketsAmd
   class Engine < Rails::Engine

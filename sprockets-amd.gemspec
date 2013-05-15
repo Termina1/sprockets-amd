@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = "Simple preprocessor for JavaScript files for adding AMD style definitions"
   s.authors     = ["Vyacheslav Shebanov"]
   s.email       = 'terminal2010@gmail.com'
-  s.files       = ["lib/sprockets-amd.rb", "lib/sprockets-amd/engine.rb", "lib/sprockets-amd/tilt_engine.rb", "lib/sprockets-amd/version.rb", "lib/sprockets-amd/template_engine.rb"]
+  s.files       = ["lib/sprockets-amd.rb", "lib/sprockets-amd/engine.rb", "lib/sprockets-amd/tilt_engine.rb", "lib/sprockets-amd/version.rb", "lib/sprockets-amd/template_engine.rb", "app/helpers/view_helpers"]
   s.homepage    = 'https://github.com/Termina1/sprockets-amd'
 
   s.add_dependency "tilt"
