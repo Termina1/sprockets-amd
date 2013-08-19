@@ -10,12 +10,12 @@ module SprocketsAmd
 
     def extract_module_name
       regexp = /#{@module_statement}\.([\w_\.-]+)/
-      @moodule_name ||= with_prefix(@code.match(regexp)[1]).first
+      @module_name ||= with_prefix(@code.match(regexp)[1]).first
     end
 
     def extract_dependencies
       regexp = /#{@require_statement}\.([\w_\.-]+)/
-      @deps ||= with_prefix @code.scan(regexp).flatten.uniq
+      @deps ||= with_prefix(@code.scan(regexp).flatten).uniq
     end
 
     def get_quote_dependencies
@@ -24,8 +24,8 @@ module SprocketsAmd
 
     def with_prefix(matches)
       matches = [matches] unless matches.is_a?(Array)
-      matches.map do |el| 
-        arr = el.split(".") 
+      matches.map do |el|
+        arr = el.split(".")
         if get_registered_prefixes.include?(arr[0])
           arr.slice(0, 2).join(".")
         else
@@ -40,7 +40,7 @@ module SprocketsAmd
 
     def module_name_without_prefix
       without_prefix [extract_module_name]
-    end  
+    end
 
     def dependencies_without_prefix
       without_prefix extract_dependencies
