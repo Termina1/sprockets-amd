@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "sprockets/amd/version"
+require "sprockets/sprockets-amd/version"
 
 Gem::Specification.new do |s|
   s.name          = 'sprockets-amd'
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors       = ["Vyacheslav Shebanov"]
   s.email         = 'terminal2010@gmail.com'
   s.files         = `git ls-files`.split($/)
-  s.require_paths = ["lib", "lib/sprockets"]
+  s.require_paths = ["lib"]
   s.license       = "MIT"
   s.homepage      = 'https://github.com/Termina1/sprockets-amd'
 end
