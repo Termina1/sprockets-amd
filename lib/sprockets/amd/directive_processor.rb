@@ -1,6 +1,7 @@
 module Sprockets
   module AMD
     module DirectiveProcessor
+
       def process_define_directive(path, inherit = true)
         if context.content_type == 'application/javascript'
         end
